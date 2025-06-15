@@ -22,11 +22,18 @@ The project uses **Vanilla JavaScript** on the frontend and **Node.js + Express*
 | Communication | JSON-based REST API        |
 | Authentication | Role-based access  |
 
-##  Why mongoDB
+###  Why mongoDB
     - Uses REST API with frontend-backend separation
     - Uses JSON data exchange
     - Focus is on CRUD operations
     - Data can be stored in JSON, SQLite, NoSQL, etc
+
+###  REST API Endpoints
+- Follows **RESTful principles** for all resources (Users, Buses, Bookings, Locations)
+- All data exchanged in **JSON format**
+- Uses clear and consistent HTTP status codes
+- API documented with **JSON request/response examples**
+- Role-specific access via endpoints (passenger, owner, admin)
 
 ---
 
