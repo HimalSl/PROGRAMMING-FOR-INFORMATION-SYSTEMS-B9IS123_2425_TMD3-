@@ -56,9 +56,6 @@ The project uses **Vanilla JavaScript** on the frontend and **Node.js + Express*
 │   ├── frontend/
 │   ├── backend/
 │   ├── docs/
-│   │   ├── requirements.md
-│   │   ├── api-design.md
-│   │   └── schema.md
 │   ├── README.md
 │   └── .gitignore
 ```
