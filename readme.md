@@ -2,7 +2,7 @@
 
 ##  Project Overview
 
-This is a simple full-stack web application built for a fictional company called **Matthews Coach Hire**. It allows different users to interact with the system based on their role:
+This is a simple full-stack web application built for a company called **Matthews Coach Hire**. It allows different users to interact with the system based on their role:
 
 - **Passengers** can register, log in, search available buses, and book tickets.
 - **Bus Owners** can register, log in, add buses, and view bookings.
@@ -62,7 +62,10 @@ The project uses **Vanilla JavaScript** on the frontend and **Node.js + Express*
 ├── PROGRAMMING-FOR-INFORMATION-SYSTEMS-B9IS123_2425_TMD3-
 │   ├── frontend/
 │   ├── backend/
+        ├── .gitignore
+        ├── .package-lock.json
+        ├── .package.json
 │   ├── docs/
 │   ├── README.md
-│   └── .gitignore
+│   
 ```
