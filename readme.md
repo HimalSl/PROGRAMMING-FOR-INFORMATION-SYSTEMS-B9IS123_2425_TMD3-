@@ -28,6 +28,9 @@ The project uses **Vanilla JavaScript** on the frontend and **Node.js + Express*
     - Focus is on CRUD operations
     - Data can be stored in JSON, SQLite, NoSQL, etc
 
+###  Why Node.js + Express.js for backend
+    - Node.js with Express.js is a widely used and suitable combination for building RESTful APIs, which aligns perfectly with this architectural  requirement
+
 ###  REST API Endpoints
 - Follows **RESTful principles** for all resources (Users, Buses, Bookings, Locations)
 - All data exchanged in **JSON format**
