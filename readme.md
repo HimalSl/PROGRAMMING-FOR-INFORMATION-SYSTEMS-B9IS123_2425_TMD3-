@@ -20,7 +20,13 @@ The project uses **Vanilla JavaScript** on the frontend and **Node.js + Express*
 | Backend     | Node.js + Express.js        |
 | Database    | MongoDB(NO-SQL database) |
 | Communication | JSON-based REST API        |
-| Authentication | Role-based access (handled manually) |
+| Authentication | Role-based access  |
+
+##  Why mongoDB
+    - Uses REST API with frontend-backend separation
+    - Uses JSON data exchange
+    - Focus is on CRUD operations
+    - Data can be stored in JSON, SQLite, NoSQL, etc
 
 ---
 
@@ -36,7 +42,6 @@ The project uses **Vanilla JavaScript** on the frontend and **Node.js + Express*
 - Register & log in
 - Add, edit, delete buses
 - View bookings
-- (Optional: View revenue summary)
 
 ###  Admin
 - Approve buses
@@ -46,12 +51,14 @@ The project uses **Vanilla JavaScript** on the frontend and **Node.js + Express*
 ---
 
 ## Project Structure
-├──PROGRAMMING-FOR-INFORMATION-SYSTEMS-B9IS123_2425_TMD3-
-├── frontend/
-├── backend/
-├── docs/
-│ ├── requirements.md
-│ ├── api-design.md
-│ └── schema.md
-├── README.md
-└── .gitignore
+```
+├── PROGRAMMING-FOR-INFORMATION-SYSTEMS-B9IS123_2425_TMD3-
+│   ├── frontend/
+│   ├── backend/
+│   ├── docs/
+│   │   ├── requirements.md
+│   │   ├── api-design.md
+│   │   └── schema.md
+│   ├── README.md
+│   └── .gitignore
+```
