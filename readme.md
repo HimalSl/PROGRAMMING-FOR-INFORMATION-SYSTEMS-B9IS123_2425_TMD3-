@@ -47,11 +47,11 @@ The project uses **Vanilla JavaScript** on the frontend and **Node.js + Express*
 
 ## Project Structure
 ├──PROGRAMMING-FOR-INFORMATION-SYSTEMS-B9IS123_2425_TMD3-
-    ├── frontend/
-    ├── backend/
-    ├── docs/
-    │ ├── requirements.md
-    │ ├── api-design.md
-    │ └── schema.md
-    ├── README.md
-    └── .gitignore
+├── frontend/
+├── backend/
+├── docs/
+│ ├── requirements.md
+│ ├── api-design.md
+│ └── schema.md
+├── README.md
+└── .gitignore
