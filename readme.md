@@ -22,13 +22,13 @@ The project uses **Vanilla JavaScript** on the frontend and **Node.js + Express*
 | Communication | JSON-based REST API        |
 | Authentication | Role-based access  |
 
-###  Why mongoDB
+###  Why mongoDB?
     - Uses REST API with frontend-backend separation
     - Uses JSON data exchange
     - Focus is on CRUD operations
     - Data can be stored in JSON, SQLite, NoSQL, etc
 
-###  Why Node.js + Express.js for backend
+###  Why Node.js + Express.js for backend?
     - Node.js with Express.js is a widely used and suitable combination for building RESTful APIs, which aligns perfectly with this architectural  requirement
 
 ###  REST API Endpoints
