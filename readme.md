@@ -16,9 +16,9 @@ The project uses **Vanilla JavaScript** on the frontend and **Node.js + Express*
 
 | Layer       | Technology Used            |
 |-------------|-----------------------------|
-| Frontend    | HTML + CSS + Vanilla JavaScript (ES6+) |
+| Frontend    | HTML + CSS + Vanilla JavaScript  |
 | Backend     | Node.js + Express.js        |
-| Database    | JSON files (or SQLite optional) |
+| Database    | MongoDB(NO-SQL database) |
 | Communication | JSON-based REST API        |
 | Authentication | Role-based access (handled manually) |
 
@@ -45,7 +45,7 @@ The project uses **Vanilla JavaScript** on the frontend and **Node.js + Express*
 
 ---
 
-## 🗂 Project Structure
+## Project Structure
 ├──PROGRAMMING-FOR-INFORMATION-SYSTEMS-B9IS123_2425_TMD3-
     ├── frontend/
     ├── backend/
