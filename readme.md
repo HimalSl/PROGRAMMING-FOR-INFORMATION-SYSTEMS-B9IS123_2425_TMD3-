@@ -43,20 +43,25 @@ The project uses **Vanilla JavaScript** on the frontend and **Node.js + Express*
 ##  Key Features
 
 ###  Passenger
-- Register & log in
-- Search for buses
+- Register account
+- Login/logout
+- Search available buses
 - Book tickets
 - View booking history
+- Cancel bookings
 
 ###  Bus Owner
-- Register & log in
-- Add, edit, delete buses
-- View bookings
+- Register as owner
+- Login/logout
+- Add/update/delete buses
+- View booking history for their buses
+- View earnings reports
 
 ###  Admin
-- Approve buses
-- View and manage users
-- Manage location list
+- Manage all users
+- Approve/reject new buses
+- Manage locations/routes
+- View system analytics
 
 ---
 
