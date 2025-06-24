@@ -32,5 +32,50 @@
                 <p>Don't have an account? <a href="#" id="showSignup">Sign up here</a></p>
             </div>
         </div>
+        <!-- Signup Form -->
+        <div class="container hidden" id="signupForm">
+            <div class="logo">
+                <h1>Join Mathew Coach Hire Bus Booking</h1>
+                <p>Create your account</p>
+            </div>
+            
+            <div id="signupAlert" class="alert alert-error hidden"></div>
+            
+            <form id="signupFormElement">
+                <div class="form-group">
+                    <label for="signupName">Full Name</label>
+                    <input type="text" id="signupName" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupPhone">Phone Number</label>
+                    <input type="tel" id="signupPhone" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupUserType">User Type</label>
+                    <select id="signupUserType" required>
+                        <option value="">Select user type</option>
+                        <option value="passenger">Passenger</option>
+                        <option value="driver">Bus Driver</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="signupEmail">Email</label>
+                    <input type="email" id="signupEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupPassword">Password</label>
+                    <input type="password" id="signupPassword" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" required>
+                </div>
+                <button type="submit" class="btn">Register</button>
+            </form>
+            
+            <div class="switch-form">
+                <p>Already have an account? <a href="#" id="showLogin">Login here</a></p>
+            </div>
+        </div>
     </body>
 </html>
