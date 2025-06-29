@@ -1,81 +1,180 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Mathew Coach Hire Bus Booking System</title>
-        <link rel="stylesheet" href="css/styles.css">
-    </head>
-    <body>
-        <!-- Login Form -->
-        <div class="container" id="loginForm">
-            <div class="logo">
-                <h1>Mathew Coach Hire Bus Booking system</h1>
-                <p>Your trusted travel companion</p>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="styles.css">
+    <title>Mathew Coach Hire Bus Booking System</title>
+</head>
+<body>
+    <!-- Login Form -->
+    <div class="container" id="loginForm">
+        <div class="logo">
+            <h1>Mathew Coach Hire Bus Booking system</h1>
+            <p>Your trusted travel companion</p>
+        </div>
+        
+        <div id="loginAlert" class="alert alert-error hidden"></div>
+        
+        <form id="loginFormElement">
+            <div class="form-group">
+                <label for="loginEmail">Email</label>
+                <input type="email" id="loginEmail" required>
             </div>
-            
-            <div id="loginAlert" class="alert alert-error hidden"></div>
-            
-            <form id="loginFormElement">
-                <div class="form-group">
-                    <label for="loginEmail">Email</label>
-                    <input type="email" id="loginEmail" required>
-                </div>
-                <div class="form-group">
-                    <label for="loginPassword">Password</label>
+            <div class="form-group password-container">
+                <label for="loginPassword">Password</label>
+                <div class="password-wrapper">
                     <input type="password" id="loginPassword" required>
+                    <button type="button" class="toggle-password" data-target="loginPassword">
+                        <i class="fas fa-eye"></i>
+                    </button>
                 </div>
-                <button type="submit" class="btn">Login</button>
-            </form>
-            
-            <div class="switch-form">
-                <p>Don't have an account? <a href="#" id="showSignup">Sign up here</a></p>
             </div>
+            <button type="submit" class="btn">Login</button>
+        </form>
+        
+        <div class="switch-form">
+            <p>Don't have an account? <a href="#" id="showSignup">Sign up here</a></p>
         </div>
-        <!-- Signup Form -->
-        <div class="container hidden" id="signupForm">
-            <div class="logo">
-                <h1>Join Mathew Coach Hire Bus Booking</h1>
-                <p>Create your account</p>
+    </div>
+
+    <!-- Signup Form -->
+    <div class="container hidden" id="signupForm">
+        <div class="logo">
+            <h1>Join Mathew Coach Hire Bus Booking</h1>
+            <p>Create your account</p>
+        </div>
+        
+        <div id="signupAlert" class="alert alert-error hidden"></div>
+        
+        <form id="signupFormElement">
+            <div class="form-group">
+                <label for="signupName">Full Name</label>
+                <input type="text" id="signupName" required>
             </div>
-            
-            <div id="signupAlert" class="alert alert-error hidden"></div>
-            
-            <form id="signupFormElement">
-                <div class="form-group">
-                    <label for="signupName">Full Name</label>
-                    <input type="text" id="signupName" required>
+            <div class="form-group phone-container">
+                <label for="signupPhone">Phone Number</label>
+                <div class="phone-wrapper">
+                    <span class="phone-prefix">+353</span>
+                    <input type="tel" id="signupPhone" maxlength="10" pattern="[0-9]{10}" required>
                 </div>
-                <div class="form-group">
-                    <label for="signupPhone">Phone Number</label>
-                    <input type="tel" id="signupPhone" required>
-                </div>
-                <div class="form-group">
-                    <label for="signupUserType">User Type</label>
-                    <select id="signupUserType" required>
-                        <option value="">Select user type</option>
-                        <option value="passenger">Passenger</option>
-                        <option value="driver">Bus Driver</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="signupEmail">Email</label>
-                    <input type="email" id="signupEmail" required>
-                </div>
-                <div class="form-group">
-                    <label for="signupPassword">Password</label>
+            </div>
+            <div class="form-group">
+                <label for="signupUserType">User Type</label>
+                <select id="signupUserType" required>
+                    <option value="">Select user type</option>
+                    <option value="passenger">Passenger</option>
+                    <option value="driver">Bus Driver</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="signupEmail">Email</label>
+                <input type="email" id="signupEmail" required>
+            </div>
+            <div class="form-group password-container">
+                <label for="signupPassword">Password</label>
+                <div class="password-wrapper">
                     <input type="password" id="signupPassword" required>
+                    <button type="button" class="toggle-password" data-target="signupPassword">
+                        <i class="fas fa-eye"></i>
+                    </button>
                 </div>
-                <div class="form-group">
-                    <label for="confirmPassword">Confirm Password</label>
+            </div>
+            <div class="form-group password-container">
+                <label for="confirmPassword">Confirm Password</label>
+                <div class="password-wrapper">
                     <input type="password" id="confirmPassword" required>
+                    <button type="button" class="toggle-password" data-target="confirmPassword">
+                        <i class="fas fa-eye"></i>
+                    </button>
                 </div>
-                <button type="submit" class="btn">Register</button>
-            </form>
-            
-            <div class="switch-form">
-                <p>Already have an account? <a href="#" id="showLogin">Login here</a></p>
+            </div>
+            <button type="submit" class="btn">Register</button>
+        </form>
+        
+        <div class="switch-form">
+            <p>Already have an account? <a href="#" id="showLogin">Login here</a></p>
+        </div>
+    </div>
+
+    <!-- Email Verification -->
+    <div class="container hidden" id="verificationForm">
+        <div class="logo">
+            <h1>📧 Check Your Email</h1>
+            <p>We've sent you a verification link</p>
+        </div>
+        
+        <div class="alert alert-info">
+            Please check your email and click the verification link to activate your account.
+        </div>
+        
+        <button class="btn-secondary btn" id="backToLogin">Back to Login</button>
+    </div>
+
+    <!-- Driver Pending Approval -->
+    <div class="container hidden" id="pendingApproval">
+        <div class="logo">
+            <h1>⏳ Pending Approval</h1>
+            <p>Your driver application is under review</p>
+        </div>
+        
+        <div class="alert alert-info">
+            Your driver registration has been submitted successfully. Please wait for admin approval. You'll receive an email once your account is approved.
+        </div>
+        
+        <button class="btn-secondary btn" id="backToLoginFromPending">Back to Login</button>
+    </div>
+
+    <!-- Admin Dashboard -->
+    <div class="container dashboard hidden" id="adminDashboard">
+        <button class="logout-btn btn" id="logoutBtn">Logout</button>
+        
+        <div class="logo">
+            <h1>🛠️ Admin Dashboard</h1>
+            <p>Bus Booking System Management</p>
+        </div>
+        
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-number" id="passengerCount">0</div>
+                <div>Registered Passengers</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="driverCount">0</div>
+                <div>Approved Drivers</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="pendingCount">0</div>
+                <div>Pending Driver registration Requests</div>
             </div>
         </div>
-    </body>
+        
+        <div class="requests">
+            <h3>Driver Registration Requests</h3>
+            <div id="driverRequests">
+                <!-- Driver requests will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- User Dashboard (Passenger/Driver) -->
+    <div class="container dashboard hidden" id="userDashboard">
+        <button class="logout-btn btn" id="userLogoutBtn">Logout</button>
+        
+        <div class="logo">
+            <h1 id="userWelcome">Welcome!</h1>
+            <p id="userRole"></p>
+        </div>
+        
+        <div class="alert alert-success">
+            <p>🎉 Login successful! Welcome to BusBook.</p>
+            <p>Your dashboard features will be implemented in the next phase.</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
 </html>
