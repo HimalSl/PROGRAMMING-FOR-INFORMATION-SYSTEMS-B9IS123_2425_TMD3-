@@ -1,19 +1,45 @@
 const express = require('express');
+const cors = require('cors');
 const connectDB = require('./config/db');
 require('dotenv').config();
-
-
 
 // Create Express app
 const app = express();
 
-//connect to MongoDB
+// Connect to MongoDB
 connectDB();
 
+// Middleware
+app.use(cors());
+app.use(express.json());
 
-// Start server
-const PORT = process.env.PORT || 5000; // if the PORT is not defined in the environment, default to 5000
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+// Routes
+app.use('/api/auth', require('./routes/auth'));
+app.use('/api/admin', require('./routes/admin'));
+app.use('/api/user', require('./routes/user'));
+
+// Health check endpoint
+app.get('/api/health', (req, res) => {
+    res.json({ 
+        status: 'OK', 
+        message: 'Mathew Coach Hire Bus Booking System API is running',
+        timestamp: new Date().toISOString()
+    });
 });
 
+// 404 handler
+app.use((req, res) => {
+    res.status(404).json({ message: 'API endpoint not found' });
+});
+
+// Error handling middleware
+app.use((error, req, res, next) => {
+    console.error('Unhandled error:', error);
+    res.status(500).json({ message: 'Internal server error' });
+});
+
+// Start server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
+});
