@@ -1,3 +1,5 @@
+// Admin Controller for managing drivers and dashboard statistics
+
 const User = require('../models/User');
 const transporter = require('../config/email');
 const crypto = require('crypto');
