@@ -188,7 +188,7 @@ exports.createAdmin = async (req, res) => {
         
         const admin = new User({
             name: 'System Administrator',
-            email: 'nemsararanaba14@gmail.com',// Need to change
+            email: 'himalmahiranga333@gmail.com',// Need to change
             password: hashedPassword,
             phone: '1234567890',
             role: 'admin',
@@ -200,7 +200,7 @@ exports.createAdmin = async (req, res) => {
         res.json({ 
             message: 'Admin user created successfully',
             credentials: {
-                email: 'nemsararanaba14@gmail.com',// Need to change
+                email: 'himalmahiranga333@gmail.com',// Need to change
                 password: 'admin123'
             }
         });
