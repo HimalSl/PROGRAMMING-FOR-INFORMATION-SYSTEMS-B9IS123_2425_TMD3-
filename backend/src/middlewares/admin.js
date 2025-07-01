@@ -8,7 +8,7 @@ const requireAdmin = (req, res, next) => {
         return res.status(403).json({ message: 'Admin access required' });
     }
 
-    // If the user's role is 'admin', call the next middleware
+    // If the user's role is admin call the next middleware
     next();
 };
 

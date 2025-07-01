@@ -195,7 +195,7 @@ input:focus, select:focus {
 }
 
 .password-wrapper input {
-    padding-right: 2.5rem; /* Space for the icon */
+    padding-right: 2.5rem;
 }
 
 .toggle-password {
