@@ -70,7 +70,7 @@ exports.register = async (req, res) => {
                         </div>
                         <p>If the button doesn't work, copy and paste this link into your browser:</p>
                         <p>${verificationLink}</p>
-                        <p>Best regards,<br>The BusBook Team</p>
+                        <p>Best regards,<br>The Mathew Coach Hire Bus Booking System Team</p>
                     </div>
                 `
             };

@@ -56,7 +56,7 @@ exports.approveDriver = async (req, res) => {
                 <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
                     <h2 style="color: #28a745;">Congratulations!</h2>
                     <p>Hello ${driver.name},</p>
-                    <p>Great news! Your driver application has been approved by our admin team.</p>
+                    <p>Great news! Your driver application has been approved by our team.</p>
                     <p>Please click the button below to verify your email address and activate your account Otherwise you cannot log in to the account:</p>
                     <div style="text-align: center; margin: 30px 0;">
                         <a href="${verificationLink}" 
@@ -67,7 +67,7 @@ exports.approveDriver = async (req, res) => {
                     </div>
                     <p>If the button doesn't work, copy and paste this link into your browser:</p>
                     <p>${verificationLink}</p>
-                    <p>After verifying your email, you can log in to your BusBook driver account.</p>
+                    <p>After verifying your email, you can log in to your Mathew Coach Hire Bus Booking System driver account.</p>
                     <p>Welcome to the BusBook Mathew Coach Hire community!</p>
                     <p>Best regards,<br>The BusBook Team</p>
                 </div>
@@ -109,10 +109,10 @@ exports.rejectDriver = async (req, res) => {
                     <p>Hello ${driver.name},</p>
                     <p>Thank you for your interest in becoming a Mathew Coach Hire Bus Booking driver.</p>
                     <p>After careful review, we regret to inform you that your driver application has not been approved at this time.</p>
-                    <p>This decision may be due to various factors including documentation requirements or current driver capacity.</p>
-                    <p>You're welcome to reapply in the future when circumstances change.</p>
+                    <p>This decision may be due to various factors including requirements and current driver capacity.</p>
+                    <p>You're welcome to reapply in the future when circumstances are changed.</p>
                     <p>Thank you for your understanding.</p>
-                    <p>Best regards,<br>Mathew Coach Hire Team</p>
+                    <p>Best regards,<br>Mathew Coach Hire Bus Booking System Team</p>
                 </div>
             `
         };
