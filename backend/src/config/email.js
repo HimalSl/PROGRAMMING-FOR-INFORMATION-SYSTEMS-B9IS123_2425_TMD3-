@@ -1,4 +1,3 @@
-// Import the nodemailer library for sending emails
 const nodemailer = require('nodemailer');
 
 // Create a transporter object using the default SMTP transport with gmail service

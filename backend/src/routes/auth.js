@@ -2,16 +2,16 @@ const express = require('express');
 const router = express.Router();
 const authController = require('../controllers/authController');
 
-// Register new user
+// Register new user route
 router.post('/register', authController.register);
 
-// Email verification
+// Email verification route
 router.get('/verify-email', authController.verifyEmail);
 
-// Login
+// Login route
 router.post('/login', authController.login);
 
-// Create admin - Acts like one time
+// Create admin route
 router.post('/setup/create-admin', authController.createAdmin);
 
 module.exports = router;

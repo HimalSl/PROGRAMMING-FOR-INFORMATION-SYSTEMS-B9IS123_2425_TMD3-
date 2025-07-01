@@ -1,5 +1,5 @@
 module.exports = {
-    // The 'secret' property holds the secret key used for signing and verifying JSON Web Tokens (JWTs).
+    // This holds the JWT secret key
     secret: process.env.JWT_SECRET,
 
     // Set the expiration time for the JWTs.

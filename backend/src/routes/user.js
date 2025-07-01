@@ -3,7 +3,7 @@ const router = express.Router();
 const userController = require('../controllers/userController');
 const authenticateToken = require('../middlewares/auth');
 
-// Get user profile
+// Get user profile route
 router.get('/profile', authenticateToken, userController.getProfile);
 
 module.exports = router;

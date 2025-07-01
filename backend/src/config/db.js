@@ -1,10 +1,8 @@
- // Import the mongoose library for MongoDB interaction
 const mongoose = require('mongoose');
 
 /**
  * @function connectDB
  * @description creating a connection to the MongoDB database.
- * @returns A promise that resolves when the connection is successful, or rejects on error.
  */
 const connectDB = async () => {
     try {
@@ -13,7 +11,6 @@ const connectDB = async () => {
 
         // Check if the MONGODB_URI environment variable is defined
         if (!uri) {
-            // If not defined, throw an error to indicate missing configuration
             throw new Error('MONGODB_URI is not defined');
         }
 
@@ -34,7 +31,7 @@ mongoose.connection.on('disconnected', () => {
 
 // Event listener for the application termination signal 
 process.on('SIGINT', async () => {
-    // Close the MongoDB connection gracefully
+    // Close the MongoDB connection
     await mongoose.connection.close();
     console.log('MongoDB connection closed due to app termination');
     process.exit(0);

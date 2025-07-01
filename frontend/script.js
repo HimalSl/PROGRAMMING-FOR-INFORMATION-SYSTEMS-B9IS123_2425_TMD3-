@@ -1,4 +1,4 @@
-// API Configuration
+// API Configuration using the port
 const API_BASE = 'http://localhost:5000/api';
 
 // DOM Elements
