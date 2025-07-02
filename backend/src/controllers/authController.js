@@ -57,14 +57,14 @@ exports.register = async (req, res) => {
                 to: email,
                 subject: 'Mathew Coach Hire Bus Booking - Verify Your Email',
                 html: `
-                    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+                    <div style="font-family: "Poppins", sans-serif; max-width: 600px; margin: 0 auto;">
                         <h2 style="color: #06528b;">Welcome to Mathew Coach Hire Bus Booking system!</h2>
                         <p>Hello ${name},</p>
                         <p>Thank you for registering with Mathew Coach Hire Bus Booking system. Please click the button below to verify your email address otherwise you cannot access the system:</p>
                         <div style="text-align: center; margin: 30px 0;">
                             <a href="${verificationLink}" 
                                style="background-color: #06528b; color: white; padding: 12px 30px; 
-                                      text-decoration: none; border-radius: 5px; display: inline-block;">
+                                      text-decoration: none; border-radius: 15px; display: inline-block;">
                                 Verify Email Address
                             </a>
                         </div>

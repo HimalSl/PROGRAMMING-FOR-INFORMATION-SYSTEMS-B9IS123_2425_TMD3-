@@ -53,7 +53,7 @@ exports.approveDriver = async (req, res) => {
             to: driver.email,
             subject: 'Mathew Coach Hire Bus Booking System - Driver Application Approved',
             html: `
-                <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+                <div style="font-family: "Poppins", sans-serif; max-width: 600px; margin: 0 auto;">
                     <h2 style="color: #28a745;">Congratulations!</h2>
                     <p>Hello ${driver.name},</p>
                     <p>Great news! Your driver application has been approved by our team.</p>
@@ -61,7 +61,7 @@ exports.approveDriver = async (req, res) => {
                     <div style="text-align: center; margin: 30px 0;">
                         <a href="${verificationLink}" 
                            style="background-color: #28a745; color: white; padding: 12px 30px; 
-                                  text-decoration: none; border-radius: 5px; display: inline-block;">
+                                  text-decoration: none; border-radius: 15px; display: inline-block;">
                             Verify Email Address
                         </a>
                     </div>
