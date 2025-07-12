@@ -1,6 +1,3 @@
-
-// This code defines a Mongoose schema for a User model in a Node.js application.
-
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
