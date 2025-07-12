@@ -6,7 +6,7 @@
 
 body {
     font-family: "Poppins", sans-serif;
-    background: url('/frontend/src/assets/Bg_image.jpg') no-repeat center center/cover;
+    background: url('/frontend/assets/BG_2.jpg') no-repeat center center/cover;
     min-height: 100vh;
     display: flex;
     align-items: center;
