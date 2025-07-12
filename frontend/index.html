@@ -3,35 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Getting the popppins font from the google-->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-
-    <!-- Font Awesome for icons and importing external css-->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="styles.css">
-
-    <!-- Add favicon as a logo-->
-    <link rel="icon" type="image/png" href="/frontend/assets/Web_favicon.jpg"> 
-
     <title>Mathew Coach Hire Bus Booking System</title>
 </head>
 <body>
     <!-- Login Form -->
     <div class="container" id="loginForm">
         <div class="logo">
-            <h1>Mathew Coach Hire Bus Booking system</h1>
+            <h1><i class="fas fa-bus"></i> Mathew Coach Hire</h1>
             <p>Your trusted travel companion</p>
         </div>
         
         <div id="loginAlert" class="alert alert-error hidden"></div>
         
-        <form id="loginFormElement">
+        <form id="loginFormElement" class="form-box">
             <div class="form-group">
-                <label for="loginEmail">Email</label>
+                <label for="loginEmail"><i class="fas fa-envelope"></i> Email</label>
                 <input type="email" id="loginEmail" required>
             </div>
             <div class="form-group password-container">
-                <label for="loginPassword">Password</label>
+                <label for="loginPassword"><i class="fas fa-lock"></i> Password</label>
                 <div class="password-wrapper">
                     <input type="password" id="loginPassword" required>
                     <button type="button" class="toggle-password" data-target="loginPassword">
@@ -39,7 +32,7 @@
                     </button>
                 </div>
             </div>
-            <button type="submit" class="btn">Login</button>
+            <button type="submit" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i> Login</button>
         </form>
         
         <div class="switch-form">
@@ -50,26 +43,26 @@
     <!-- Signup Form -->
     <div class="container hidden" id="signupForm">
         <div class="logo">
-            <h1>Join Mathew Coach Hire Bus Booking</h1>
+            <h1><i class="fas fa-user-plus"></i> Join Mathew Coach Hire</h1>
             <p>Create your account</p>
         </div>
         
         <div id="signupAlert" class="alert alert-error hidden"></div>
         
-        <form id="signupFormElement">
+        <form id="signupFormElement" class="form-box">
             <div class="form-group">
-                <label for="signupName">Full Name</label>
+                <label for="signupName"><i class="fas fa-user"></i> Full Name</label>
                 <input type="text" id="signupName" required>
             </div>
             <div class="form-group phone-container">
-                <label for="signupPhone">Phone Number</label>
+                <label for="signupPhone"><i class="fas fa-phone"></i> Phone Number</label>
                 <div class="phone-wrapper">
                     <span class="phone-prefix">+353</span>
                     <input type="tel" id="signupPhone" maxlength="10" pattern="[0-9]{10}" required>
                 </div>
             </div>
             <div class="form-group">
-                <label for="signupUserType">User Type</label>
+                <label for="signupUserType"><i class="fas fa-users"></i> User Type</label>
                 <select id="signupUserType" required>
                     <option value="">Select user type</option>
                     <option value="passenger">Passenger</option>
@@ -77,11 +70,11 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="signupEmail">Email</label>
+                <label for="signupEmail"><i class="fas fa-envelope"></i> Email</label>
                 <input type="email" id="signupEmail" required>
             </div>
             <div class="form-group password-container">
-                <label for="signupPassword">Password</label>
+                <label for="signupPassword"><i class="fas fa-lock"></i> Password</label>
                 <div class="password-wrapper">
                     <input type="password" id="signupPassword" required>
                     <button type="button" class="toggle-password" data-target="signupPassword">
@@ -90,7 +83,7 @@
                 </div>
             </div>
             <div class="form-group password-container">
-                <label for="confirmPassword">Confirm Password</label>
+                <label for="confirmPassword"><i class="fas fa-lock"></i> Confirm Password</label>
                 <div class="password-wrapper">
                     <input type="password" id="confirmPassword" required>
                     <button type="button" class="toggle-password" data-target="confirmPassword">
@@ -98,7 +91,7 @@
                     </button>
                 </div>
             </div>
-            <button type="submit" class="btn">Register</button>
+            <button type="submit" class="btn btn-primary"><i class="fas fa-user-plus"></i> Register</button>
         </form>
         
         <div class="switch-form">
@@ -109,75 +102,167 @@
     <!-- Email Verification -->
     <div class="container hidden" id="verificationForm">
         <div class="logo">
-            <h1>Check Your Email</h1>
+            <h1><i class="fas fa-envelope-open-text"></i> Check Your Email</h1>
             <p>We've sent you a verification link</p>
         </div>
         
         <div class="alert alert-info">
-            Please check your email and click the verification link to activate your account.
+            <i class="fas fa-info-circle"></i> Please check your email and click the verification link to activate your account.
         </div>
         
-        <button class="btn-secondary btn" id="backToLogin">Back to Login</button>
+        <button class="btn btn-secondary" id="backToLogin"><i class="fas fa-arrow-left"></i> Back to Login</button>
     </div>
 
     <!-- Driver Pending Approval -->
     <div class="container hidden" id="pendingApproval">
         <div class="logo">
-            <h1>Pending Approval</h1>
+            <h1><i class="fas fa-hourglass-half"></i> Pending Approval</h1>
             <p>Your driver application is under review</p>
         </div>
         
         <div class="alert alert-info">
-            Your driver registration has been submitted successfully. Please wait for admin approval. You'll receive an email once your account is approved.
+            <i class="fas fa-info-circle"></i> Your driver registration has been submitted successfully. Please wait for admin approval. You'll receive an email once your account is approved.
         </div>
         
-        <button class="btn-secondary btn" id="backToLoginFromPending">Back to Login</button>
+        <button class="btn btn-secondary" id="backToLoginFromPending"><i class="fas fa-arrow-left"></i> Back to Login</button>
     </div>
 
     <!-- Admin Dashboard -->
     <div class="container dashboard hidden" id="adminDashboard">
-        <button class="logout-btn btn" id="logoutBtn">Logout</button>
+        <button class="logout-btn btn btn-secondary" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</button>
         
         <div class="logo">
-            <h1>Admin Dashboard</h1>
-            <p>Bus Booking System Management</p>
+            <h1><i class="fas fa-tachometer-alt"></i> Admin Dashboard</h1>
+            <p>Manage Bus Booking System</p>
         </div>
         
         <div class="stats">
             <div class="stat-card">
+                <i class="fas fa-users stat-icon"></i>
                 <div class="stat-number" id="passengerCount">0</div>
                 <div>Registered Passengers</div>
             </div>
             <div class="stat-card">
+                <i class="fas fa-user-check stat-icon"></i>
                 <div class="stat-number" id="driverCount">0</div>
                 <div>Approved Drivers</div>
             </div>
             <div class="stat-card">
+                <i class="fas fa-user-clock stat-icon"></i>
                 <div class="stat-number" id="pendingCount">0</div>
-                <div>Pending Driver registration Requests</div>
+                <div>Pending Driver Requests</div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-bus stat-icon"></i>
+                <div class="stat-number" id="busCount">0</div>
+                <div>Approved Buses</div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-ticket-alt stat-icon"></i>
+                <div class="stat-number" id="bookingCount">0</div>
+                <div>Active Bookings</div>
             </div>
         </div>
         
         <div class="requests">
-            <h3>Driver Registration Requests</h3>
-            <div id="driverRequests">
-                <!-- Driver requests will be loaded here -->
-            </div>
+            <h3><i class="fas fa-user-plus"></i> Driver Registration Requests</h3>
+            <div id="driverRequests"></div>
+        </div>
+        
+        <div class="requests">
+            <h3><i class="fas fa-bus-alt"></i> Bus Approval Requests</h3>
+            <div id="busRequests"></div>
+        </div>
+        
+        <div class="requests">
+            <h3><i class="fas fa-map-marker-alt"></i> Manage End Locations</h3>
+            <form id="addLocationForm" class="form-box">
+                <div class="form-group">
+                    <label for="locationName"><i class="fas fa-map-pin"></i> New End Location</label>
+                    <input type="text" id="locationName" required>
+                </div>
+                <button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> Add End Location</button>
+            </form>
+            <div id="locationsList"></div>
+        </div>
+        
+        <div class="requests">
+            <h3><i class="fas fa-chart-line"></i> System Analytics</h3>
+            <div id="analytics"></div>
         </div>
     </div>
 
-    <!-- User Dashboard (Passenger/Driver) -->
-    <div class="container dashboard hidden" id="userDashboard">
-        <button class="logout-btn btn" id="userLogoutBtn">Logout</button>
+    <!-- Passenger Dashboard -->
+    <div class="container dashboard hidden" id="passengerDashboard">
+        <button class="logout-btn btn btn-secondary" id="passengerLogoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</button>
         
         <div class="logo">
-            <h1 id="userWelcome">Welcome!</h1>
-            <p id="userRole"></p>
+            <h1 id="passengerWelcome"><i class="fas fa-user"></i> Welcome!</h1>
+            <p>Passenger Dashboard</p>
         </div>
         
-        <div class="alert alert-success">
-            <p>Login successful! Welcome to Mathew Coach Hire Bus Booking system.</p>
-            <p>Your dashboard features comming soon</p>
+        <div class="requests">
+            <h3><i class="fas fa-search"></i> Search Buses from Dublin</h3>
+            <form id="searchBusForm" class="form-box">
+                <div class="form-group">
+                    <label for="endLocation"><i class="fas fa-map-marker-alt"></i> End Location</label>
+                    <select id="endLocation" required></select>
+                </div>
+                <div class="form-group">
+                    <label for="travelDate"><i class="fas fa-calendar-alt"></i> Travel Date</label>
+                    <input type="date" id="travelDate" required>
+                </div>
+                <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i> Search Buses</button>
+            </form>
+            <div id="busList"></div>
+        </div>
+        
+        <div class="requests">
+            <h3><i class="fas fa-ticket-alt"></i> Booking History</h3>
+            <div id="bookingHistory"></div>
+        </div>
+    </div>
+
+    <!-- Driver Dashboard -->
+    <div class="container dashboard hidden" id="driverDashboard">
+        <button class="logout-btn btn btn-secondary" id="driverLogoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+        
+        <div class="logo">
+            <h1 id="driverWelcome"><i class="fas fa-user"></i> Welcome!</h1>
+            <p>Driver Dashboard</p>
+        </div>
+        
+        <div class="requests">
+            <h3><i class="fas fa-bus"></i> Add New Bus from Dublin</h3>
+            <form id="addBusForm" class="form-box">
+                <div class="form-group">
+                    <label for="busNumber"><i class="fas fa-bus-alt"></i> Bus Number</label>
+                    <input type="text" id="busNumber" required>
+                </div>
+                <div class="form-group">
+                    <label for="busEndLocation"><i class="fas fa-map-marker-alt"></i> End Location</label>
+                    <select id="busEndLocation" required></select>
+                </div>
+                <div class="form-group">
+                    <label for="startTime"><i class="fas fa-clock"></i> Start Time</label>
+                    <input type="datetime-local" id="startTime" required>
+                </div>
+                <div class="form-group">
+                    <label for="maxSeats"><i class="fas fa-chair"></i> Maximum Seats</label>
+                    <input type="number" id="maxSeats" min="1" required>
+                </div>
+                <button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> Add Bus</button>
+            </form>
+        </div>
+        
+        <div class="requests">
+            <h3><i class="fas fa-bus-alt"></i> Your Buses</h3>
+            <div id="driverBusList"></div>
+        </div>
+        
+        <div class="requests">
+            <h3><i class="fas fa-ticket-alt"></i> Booking History</h3>
+            <div id="driverBookingHistory"></div>
         </div>
     </div>
 
