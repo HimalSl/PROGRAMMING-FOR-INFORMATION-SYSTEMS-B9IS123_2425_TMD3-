@@ -1,4 +1,3 @@
-// API Configuration
 const API_BASE = 'http://localhost:5000/api';
 
 // DOM Elements
@@ -10,7 +9,7 @@ const adminDashboard = document.getElementById('adminDashboard');
 const passengerDashboard = document.getElementById('passengerDashboard');
 const driverDashboard = document.getElementById('driverDashboard');
 
-// Navigation
+// Navigation funtionalities
 document.getElementById('showSignup').addEventListener('click', () => {
     loginForm.classList.add('hidden');
     signupForm.classList.remove('hidden');
@@ -183,6 +182,7 @@ async function loadAdminDashboard() {
             
             displayDriverRequests(data.pendingDrivers);
             displayBusRequests(data.pendingBuses);
+            displayModificationRequests(data.pendingModifications);
         }
     } catch (error) {
         console.error('Failed to load dashboard:', error);
@@ -238,6 +238,7 @@ function displayDriverRequests(requests) {
     `).join('');
 }
 
+// Display pending bus requests
 function displayBusRequests(requests) {
     const container = document.getElementById('busRequests');
     
@@ -261,6 +262,34 @@ function displayBusRequests(requests) {
     `).join('');
 }
 
+// Display pending bus modification requests
+function displayModificationRequests(requests) {
+    const container = document.getElementById('modificationRequests');
+    
+    if (requests.length === 0) {
+        container.innerHTML = '<p>No pending modification requests.</p>';
+        return;
+    }
+    
+    container.innerHTML = requests.map(request => `
+        <div class="request-item">
+            <h4>Bus ${request.busId.busNumber}</h4>
+            <p><strong>Driver:</strong> ${request.driverId.name} (${request.driverId.email})</p>
+            <p><strong>Request Type:</strong> ${request.type === 'update' ? 'Update Start Time' : 'Remove Bus'}</p>
+            ${request.type === 'update' ? `
+                <p><strong>Current Start Time:</strong> ${new Date(request.busId.startTime).toLocaleString()}</p>
+                <p><strong>New Start Time:</strong> ${new Date(request.newStartTime).toLocaleString()}</p>
+            ` : ''}
+            <p><strong>Submitted:</strong> ${new Date(request.createdAt).toLocaleDateString()}</p>
+            <div class="request-actions">
+                <button class="btn btn-approve" onclick="approveModification('${request._id}')">Approve</button>
+                <button class="btn btn-reject" onclick="rejectModification('${request._id}')">Reject</button>
+            </div>
+        </div>
+    `).join('');
+}
+
+// Admin Actions
 async function approveDriver(driverId) {
     try {
         const token = localStorage.getItem('token');
@@ -280,6 +309,7 @@ async function approveDriver(driverId) {
     }
 }
 
+// Reject a driver application
 async function rejectDriver(driverId) {
     try {
         const token = localStorage.getItem('token');
@@ -299,6 +329,7 @@ async function rejectDriver(driverId) {
     }
 }
 
+// Approve a bus request is done by this function
 async function approveBus(busId) {
     try {
         const token = localStorage.getItem('token');
@@ -318,6 +349,7 @@ async function approveBus(busId) {
     }
 }
 
+// Reject a bus request is done by this function
 async function rejectBus(busId) {
     try {
         const token = localStorage.getItem('token');
@@ -337,6 +369,47 @@ async function rejectBus(busId) {
     }
 }
 
+// Approve a bus modification request
+async function approveModification(modificationId) {
+    try {
+        const token = localStorage.getItem('token');
+        const response = await fetch(`${API_BASE}/busModification/approve/${modificationId}`, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+
+        if (response.ok) {
+            loadAdminDashboard(); 
+            alert('Modification approved successfully!');
+        }
+    } catch (error) {
+        alert('Failed to approve modification.');
+    }
+}
+
+// Reject a bus modification request
+async function rejectModification(modificationId) {
+    try {
+        const token = localStorage.getItem('token');
+        const response = await fetch(`${API_BASE}/busModification/reject/${modificationId}`, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        
+        if (response.ok) {
+            loadAdminDashboard(); 
+            alert('Modification rejected successfully!');
+        }
+    } catch (error) {
+        alert('Failed to reject modification.');
+    }
+}
+
+// Load end locations for admin
 async function loadLocationsForAdmin() {
     try {
         const token = localStorage.getItem('token');
@@ -362,6 +435,7 @@ async function loadLocationsForAdmin() {
     }
 }
 
+// Add new end location
 document.getElementById('addLocationForm')?.addEventListener('submit', async (e) => {
     e.preventDefault();
     
@@ -388,6 +462,7 @@ document.getElementById('addLocationForm')?.addEventListener('submit', async (e)
     }
 });
 
+// Delete an end location
 async function deleteLocation(locationId) {
     try {
         const token = localStorage.getItem('token');
@@ -450,6 +525,7 @@ document.getElementById('searchBusForm')?.addEventListener('submit', async (e) =
     }
 });
 
+// Display bus list
 function displayBusList(buses) {
     const container = document.getElementById('busList');
     
@@ -458,21 +534,26 @@ function displayBusList(buses) {
         return;
     }
     
-    container.innerHTML = buses.map(bus => `
-        <div class="bus-card ${bus.availableSeats === 0 ? 'full' : ''}">
-            ${bus.availableSeats === 0 ? '<span class="badge">All Booked</span>' : ''}
-            <h4>Bus ${bus.busNumber}</h4>
-            <p><strong>Route:</strong> Dublin to ${bus.endLocation}</p>
-            <p><strong>Start Time:</strong> ${new Date(bus.startTime).toLocaleString()}</p>
-            <p><strong>Available Seats:</strong> ${bus.availableSeats}</p>
-            ${bus.availableSeats > 0 ? `
-                <input type="number" id="seats-${bus._id}" min="1" max="${bus.availableSeats}" placeholder="Number of seats" required>
-                <button class="btn book-btn" onclick="bookBus('${bus._id}')">Book Now</button>
-            ` : ''}
-        </div>
-    `).join('');
+    container.innerHTML = buses.map(bus => {
+        const isRecentlyUpdated = new Date(bus.updatedAt) > new Date(Date.now() - 24 * 60 * 60 * 1000); // Last 24 hours
+        return `
+            <div class="bus-card ${bus.availableSeats === 0 ? 'full' : ''}">
+                ${bus.availableSeats === 0 ? '<span class="badge">All Booked</span>' : ''}
+                ${isRecentlyUpdated ? '<span class="badge badge-updated">Time Updated</span>' : ''}
+                <h4>Bus ${bus.busNumber}</h4>
+                <p><strong>Route:</strong> Dublin to ${bus.endLocation}</p>
+                <p><strong>Start Time:</strong> ${new Date(bus.startTime).toLocaleString()}</p>
+                <p><strong>Available Seats:</strong> ${bus.availableSeats}</p>
+                ${bus.availableSeats > 0 ? `
+                    <input type="number" id="seats-${bus._id}" min="1" max="${bus.availableSeats}" placeholder="Number of seats" required>
+                    <button class="btn book-btn" onclick="bookBus('${bus._id}')">Book Now</button>
+                ` : ''}
+            </div>
+        `;
+    }).join('');
 }
 
+// Book a bus
 async function bookBus(busId) {
     const seats = document.getElementById(`seats-${busId}`).value;
     
@@ -500,6 +581,7 @@ async function bookBus(busId) {
     }
 }
 
+// Load booking history
 async function loadBookingHistory() {
     try {
         const token = localStorage.getItem('token');
@@ -518,24 +600,29 @@ async function loadBookingHistory() {
                 return;
             }
             
-            container.innerHTML = bookings.map(booking => `
-                <div class="request-item">
-                    <h4>Bus ${booking.bus.busNumber}</h4>
-                    <p><strong>Route:</strong> Dublin to ${booking.bus.endLocation}</p>
-                    <p><strong>Start Time:</strong> ${new Date(booking.bus.startTime).toLocaleString()}</p>
-                    <p><strong>Seats Booked:</strong> ${booking.seatsBooked}</p>
-                    <p><strong>Status:</strong> ${booking.status}</p>
-                    ${booking.status === 'active' ? `
-                        <button class="btn cancel-btn" onclick="cancelBooking('${booking._id}')">Cancel Booking</button>
-                    ` : ''}
-                </div>
-            `).join('');
+            container.innerHTML = bookings.map(booking => {
+                const isRecentlyUpdated = new Date(booking.bus.updatedAt) > new Date(Date.now() - 24 * 60 * 60 * 1000); // Last 24 hours
+                return `
+                    <div class="request-item">
+                        <h4>Bus ${booking.bus.busNumber}</h4>
+                        <p><strong>Route:</strong> Dublin to ${booking.bus.endLocation}</p>
+                        <p><strong>Start Time:</strong> ${new Date(booking.bus.startTime).toLocaleString()}</p>
+                        <p><strong>Seats Booked:</strong> ${booking.seatsBooked}</p>
+                        <p><strong>Status:</strong> ${booking.status}</p>
+                        ${isRecentlyUpdated ? '<span class="badge badge-updated">Time Updated</span>' : ''}
+                        ${booking.status === 'active' ? `
+                            <button class="btn cancel-btn" onclick="cancelBooking('${booking._id}')">Cancel Booking</button>
+                        ` : ''}
+                    </div>
+                `;
+            }).join('');
         }
     } catch (error) {
         console.error('Failed to load booking history:', error);
     }
 }
 
+//cancel a booking
 async function cancelBooking(bookingId) {
     try {
         const token = localStorage.getItem('token');
@@ -615,6 +702,8 @@ document.getElementById('addBusForm')?.addEventListener('submit', async (e) => {
     }
 });
 
+// Load driver's buses
+
 async function loadDriverBuses() {
     try {
         const token = localStorage.getItem('token');
@@ -640,6 +729,10 @@ async function loadDriverBuses() {
                     <p><strong>Start Time:</strong> ${new Date(bus.startTime).toLocaleString()}</p>
                     <p><strong>Seats Booked:</strong> ${bus.maxSeats - bus.availableSeats}</p>
                     <p><strong>Status:</strong> ${bus.isApproved ? 'Approved' : 'Pending Approval'}</p>
+                    ${bus.isApproved ? `
+                        <button class="btn btn-update" onclick="requestUpdateTime('${bus._id}', '${bus.startTime}')">Update Time</button>
+                        <button class="btn btn-reject" onclick="requestRemoveBus('${bus._id}')">Remove</button>
+                    ` : ''}
                 </div>
             `).join('');
         }
@@ -648,6 +741,68 @@ async function loadDriverBuses() {
     }
 }
 
+async function requestUpdateTime(busId, currentStartTime) {
+    const newStartTime = prompt('Enter new start time (YYYY-MM-DDTHH:MM)', currentStartTime);
+    if (!newStartTime) return;
+
+    try {
+        const token = localStorage.getItem('token');
+        const response = await fetch(`${API_BASE}/busModification/request`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                busId,
+                type: 'update',
+                newStartTime
+            })
+        });
+
+        if (response.ok) {
+            alert('Modification request submitted, awaiting admin approval.');
+            loadDriverBuses();
+        } else {
+            const data = await response.json();
+            alert(data.message || 'Failed to submit modification request.');
+        }
+    } catch (error) {
+        alert('Failed to submit modification request.');
+    }
+}
+
+// Request removal of a bus
+async function requestRemoveBus(busId) {
+    if (!confirm('Are you sure you want to request removal of this bus?')) return;
+
+    try {
+        const token = localStorage.getItem('token');
+        const response = await fetch(`${API_BASE}/busModification/request`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                busId,
+                type: 'remove'
+            })
+        });
+
+        if (response.ok) {
+            alert('Removal request submitted, awaiting admin approval.');
+            loadDriverBuses();
+        } else {
+            const data = await response.json();
+            alert(data.message || 'Failed to submit removal request.');
+        }
+    } catch (error) {
+        alert('Failed to submit removal request.');
+    }
+}
+
+// Load driver's booking history
 async function loadDriverBookingHistory() {
     try {
         const token = localStorage.getItem('token');
@@ -753,3 +908,7 @@ window.rejectBus = rejectBus;
 window.deleteLocation = deleteLocation;
 window.bookBus = bookBus;
 window.cancelBooking = cancelBooking;
+window.requestUpdateTime = requestUpdateTime;
+window.requestRemoveBus = requestRemoveBus;
+window.approveModification = approveModification;
+window.rejectModification = rejectModification;

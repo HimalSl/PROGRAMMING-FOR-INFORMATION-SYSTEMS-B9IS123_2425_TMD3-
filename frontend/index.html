@@ -12,7 +12,7 @@
     <!-- Login Form -->
     <div class="container" id="loginForm">
         <div class="logo">
-            <h1><i class="fas fa-bus"></i> Mathew Coach Hire</h1>
+            <h1><i class="fas fa-bus"></i> Mathew Coach Hire Bus Booking System</h1>
             <p>Your trusted travel companion</p>
         </div>
         
@@ -129,7 +129,7 @@
 
     <!-- Admin Dashboard -->
     <div class="container dashboard hidden" id="adminDashboard">
-        <button class="logout-btn btn btn-secondary" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+        <button class="logout-btn btn" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</button>
         
         <div class="logo">
             <h1><i class="fas fa-tachometer-alt"></i> Admin Dashboard</h1>
@@ -155,7 +155,7 @@
             <div class="stat-card">
                 <i class="fas fa-bus stat-icon"></i>
                 <div class="stat-number" id="busCount">0</div>
-                <div>Approved Buses</div>
+                <div>Pending Bus Approvals</div>
             </div>
             <div class="stat-card">
                 <i class="fas fa-ticket-alt stat-icon"></i>
@@ -172,6 +172,11 @@
         <div class="requests">
             <h3><i class="fas fa-bus-alt"></i> Bus Approval Requests</h3>
             <div id="busRequests"></div>
+        </div>
+        
+        <div class="requests">
+            <h3><i class="fas fa-clock"></i> Bus Modification Requests</h3>
+            <div id="modificationRequests"></div>
         </div>
         
         <div class="requests">
@@ -194,7 +199,7 @@
 
     <!-- Passenger Dashboard -->
     <div class="container dashboard hidden" id="passengerDashboard">
-        <button class="logout-btn btn btn-secondary" id="passengerLogoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+        <button class="logout-btn btn" id="passengerLogoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</button>
         
         <div class="logo">
             <h1 id="passengerWelcome"><i class="fas fa-user"></i> Welcome!</h1>
@@ -225,7 +230,7 @@
 
     <!-- Driver Dashboard -->
     <div class="container dashboard hidden" id="driverDashboard">
-        <button class="logout-btn btn btn-secondary" id="driverLogoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+        <button class="logout-btn btn" id="driverLogoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</button>
         
         <div class="logo">
             <h1 id="driverWelcome"><i class="fas fa-user"></i> Welcome!</h1>

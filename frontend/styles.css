@@ -6,12 +6,15 @@
 
 body {
     font-family: "Poppins", sans-serif;
-    background: url('/frontend/assets/BG_2.jpg') no-repeat center center/cover;
+    background: url('/frontend/src/assets/Bg_image.jpg') no-repeat center center/cover;
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
+
+/* Login forms and Sign Up Forms stylings*/
 
 .container {
     background: white;
@@ -94,12 +97,12 @@ input:focus, select:focus {
 
 .btn-secondary {
     background: #f8f9fa;
-    color: #667eea;
-    border: 2px solid #667eea;
+    color: #000000;
+    border: 2px solid #000000;
 }
 
 .btn-secondary:hover {
-    background: #667eea;
+    background: #000000;
     color: white;
 }
 
@@ -195,7 +198,7 @@ input:focus, select:focus {
 }
 
 .password-wrapper input {
-    padding-right: 2.5rem; /* Space for the icon */
+    padding-right: 2.5rem;
 }
 
 .toggle-password {
@@ -279,6 +282,14 @@ input:focus, select:focus {
     padding: 0.5rem 1rem;
 }
 
+.btn-update {
+    background: #ffc107;
+    color: #000;
+    width: auto;
+    padding: 0.5rem 1rem;
+    margin-right: 0.5rem;
+}
+
 .logout-btn {
     position: absolute;
     top: 1rem;
@@ -312,6 +323,11 @@ input:focus, select:focus {
     padding: 0.5rem;
     border-radius: 5px;
     font-size: 0.8rem;
+}
+
+.bus-card .badge-updated {
+    background: #ffc107;
+    color: #000;
 }
 
 .bus-card h4 {
