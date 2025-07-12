@@ -3,7 +3,6 @@ const cors = require('cors');
 const connectDB = require('./config/db');
 require('dotenv').config();
 
-// Create Express app
 const app = express();
 
 // Connect to MongoDB
@@ -19,6 +18,7 @@ app.use('/api/admin', require('./routes/admin'));
 app.use('/api/user', require('./routes/user'));
 app.use('/api/bus', require('./routes/bus'));
 app.use('/api/booking', require('./routes/booking'));
+app.use('/api/busModification', require('./routes/busModification'));
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {
@@ -40,8 +40,7 @@ app.use((error, req, res, next) => {
     res.status(500).json({ message: 'Internal server error' });
 });
 
-// Start server
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });
