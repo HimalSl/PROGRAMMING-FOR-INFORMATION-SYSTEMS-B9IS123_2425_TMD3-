@@ -12,9 +12,16 @@ const busSchema = new mongoose.Schema({
         ref: 'User',
         required: true
     },
-    route: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Route',
+    startLocation: {
+        type: String,
+        default: 'Dublin'
+    },
+    endLocation: {
+        type: String,
+        required: true
+    },
+    startTime: {
+        type: Date,
         required: true
     },
     maxSeats: {
@@ -27,18 +34,9 @@ const busSchema = new mongoose.Schema({
         required: true,
         min: 0
     },
-    departureTime: {
-        type: Date,
-        required: true
-    },
     isApproved: {
         type: Boolean,
         default: false
-    },
-    status: {
-        type: String,
-        enum: ['pending', 'approved', 'rejected', 'deleted'],
-        default: 'pending'
     },
     createdAt: {
         type: Date,
