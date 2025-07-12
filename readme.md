@@ -55,7 +55,7 @@ The project uses **Vanilla JavaScript** on the frontend and **Node.js + Express*
 - Login/logout
 - Add/update/delete buses
 - View booking history for their buses
-- View earnings reports
+
 
 ###  Admin
 - Manage all users
