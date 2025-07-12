@@ -1,4 +1,3 @@
-
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
@@ -7,12 +6,12 @@ const transporter = require('../config/email');
 const { secret, expiresIn } = require('../config/jwt');
 
 
-// Register new user
+// when a new user register to the system this function will trigger
 exports.register = async (req, res) => {
     try {
         const { name, email, password, phone, role } = req.body;
 
-        // Validate input
+        // Validating the inputs
         if (!name || !email || !password || !phone || !role) {
             return res.status(400).json({ message: 'All fields are required' });
         }
@@ -48,7 +47,7 @@ exports.register = async (req, res) => {
 
         const savedUser = await newUser.save();
 
-        // Send verification email only for passengers
+        // Send verification email to the passengers to check their email address is valid or not
         if (role === 'passenger') {
             const verificationLink = `http://localhost:5000/api/auth/verify-email?token=${verificationToken}`;
             
@@ -57,14 +56,14 @@ exports.register = async (req, res) => {
                 to: email,
                 subject: 'Mathew Coach Hire Bus Booking System - Verify Your Email',
                 html: `
-                    <div style="font-family: "Poppins", sans-serif; max-width: 600px; margin: 0 auto;">
+                    <div style="font-family: 'Poppins', Arial, sans-serif; max-width: 600px; margin: 0 auto;">
                         <h2 style="color: #06528b;">Welcome to Mathew Coach Hire Bus Booking system!</h2>
                         <p>Hello ${name},</p>
                         <p>Thank you for registering with Mathew Coach Hire Bus Booking system. Please click the button below to verify your email address otherwise you cannot access the system:</p>
                         <div style="text-align: center; margin: 30px 0;">
                             <a href="${verificationLink}" 
                                style="background-color: #06528b; color: white; padding: 12px 30px; 
-                                      text-decoration: none; border-radius: 15px; display: inline-block;">
+                                      text-decoration: none; border-radius: 5px; display: inline-block;">
                                 Verify Email Address
                             </a>
                         </div>
@@ -95,7 +94,7 @@ exports.register = async (req, res) => {
     }
 };
 
-// Email verification is send to the passengers gmail
+// when the passenger or Driver clicks the cerification button in the email this function will be called
 exports.verifyEmail = async (req, res) => {
     try {
         const { token } = req.query;
@@ -122,12 +121,12 @@ exports.verifyEmail = async (req, res) => {
 };
 
 
-// Login functionality
+// After user verified the email passenger or driver can login to the system
 exports.login = async (req, res) => {
     try {
         const { email, password } = req.body;
 
-        // Find user's token 
+        // Find user
         const user = await User.findOne({ email });
         if (!user) {
             return res.status(401).json({ message: 'Authentication failed. Invalid email or password.' });
@@ -176,7 +175,7 @@ exports.login = async (req, res) => {
     }
 };
 
-// Create admin (one-time setup)
+// this admin is predefined by the system it self
 exports.createAdmin = async (req, res) => {
     try {
         const adminExists = await User.findOne({ role: 'admin' });
@@ -188,7 +187,7 @@ exports.createAdmin = async (req, res) => {
         
         const admin = new User({
             name: 'System Administrator',
-            email: 'himalmahiranga333@gmail.com',// Need to change
+            email: 'himalmahiranga333@gmail.com',
             password: hashedPassword,
             phone: '1234567890',
             role: 'admin',
@@ -200,7 +199,7 @@ exports.createAdmin = async (req, res) => {
         res.json({ 
             message: 'Admin user created successfully',
             credentials: {
-                email: 'himalmahiranga333@gmail.com',// Need to change
+                email: 'himalmahiranga333@gmail.com',
                 password: 'admin123'
             }
         });

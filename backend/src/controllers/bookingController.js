@@ -1,7 +1,7 @@
 const Bus = require('../models/Bus');
 const Booking = require('../models/Booking');
 
-// passengers can provide the date,time and end location and search the buses available for that route
+// when the passenger searches for buses it this will display the buses according to the date and location
 exports.searchBuses = async (req, res) => {
     try {
         const { endLocation, date } = req.query;
@@ -20,7 +20,7 @@ exports.searchBuses = async (req, res) => {
             query.startTime = { $gte: startOfDay, $lte: endOfDay };
         }
 
-        const buses = await Bus.find(query);
+        const buses = await Bus.find(query).select('busNumber startLocation endLocation startTime availableSeats maxSeats updatedAt');
         res.json(buses);
     } catch (error) {
         console.error('Search buses error:', error);
@@ -28,7 +28,7 @@ exports.searchBuses = async (req, res) => {
     }
 };
 
-// passengers can book a bus by providing number of seats that need to be reserved 
+// when the passenger booking a bus this function will triggered
 exports.bookBus = async (req, res) => {
     try {
         const { busId, seats } = req.body;
@@ -63,7 +63,7 @@ exports.bookBus = async (req, res) => {
     }
 };
 
-// passengers can see there bus booking history
+// After the passeneger booked a bus this function will display the booking history of the passenger
 exports.getBookingHistory = async (req, res) => {
     try {
         const bookings = await Booking.find({ passenger: req.user._id })
@@ -75,7 +75,7 @@ exports.getBookingHistory = async (req, res) => {
     }
 };
 
-// passengers can cancel their bus booking
+// if the passenger wants to cancel the booking this function will be triggered
 exports.cancelBooking = async (req, res) => {
     try {
         const { bookingId } = req.params;

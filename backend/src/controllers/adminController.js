@@ -2,10 +2,11 @@ const User = require('../models/User');
 const Bus = require('../models/Bus');
 const Booking = require('../models/Booking');
 const Location = require('../models/Location');
+const BusModification = require('../models/BusModification');
 const transporter = require('../config/email');
 const crypto = require('crypto');
 
-// admin dashboard loading
+// admin dashboard appearing
 exports.getDashboard = async (req, res) => {
     try {
         const passengerCount = await User.countDocuments({ role: 'passenger', isVerified: true });
@@ -17,13 +18,17 @@ exports.getDashboard = async (req, res) => {
         const pendingBuses = await Bus.find({ isApproved: false })
             .populate('driver', 'name email');
         const totalBookings = await Booking.countDocuments({ status: 'active' });
+        const pendingModifications = await BusModification.find({ status: 'pending' })
+            .populate('busId', 'busNumber startLocation endLocation startTime')
+            .populate('driverId', 'name email');
 
         res.json({
             passengerCount,
             approvedDriverCount,
             pendingDrivers,
             pendingBuses,
-            totalBookings
+            totalBookings,
+            pendingModifications
         });
     } catch (error) {
         console.error('Dashboard error:', error);
@@ -31,7 +36,7 @@ exports.getDashboard = async (req, res) => {
     }
 };
 
-// After the admin approves a driver, system send an email to the driver
+// when a driver regestraion approved this funtionality will be called
 exports.approveDriver = async (req, res) => {
     try {
         const { driverId } = req.params;
@@ -54,9 +59,9 @@ exports.approveDriver = async (req, res) => {
         const mailOptions = {
             from: process.env.EMAIL_USER,
             to: driver.email,
-            subject: '>Mathew Coach Hire Bus Booking System - Driver Application Approved',
+            subject: 'Mathew Coach Hire Bus Booking System - Driver Application Approved',
             html: `
-                <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+                <div style="font-family: 'Poppins', Arial, sans-serif; max-width: 600px; margin: 0 auto;">
                     <h2 style="color: #28a745;">Congratulations!</h2>
                     <p>Hello ${driver.name},</p>
                     <p>Great news! Your driver application has been approved by our admin team.</p>
@@ -71,7 +76,7 @@ exports.approveDriver = async (req, res) => {
                     <p>If the button doesn't work, copy and paste this link into your browser:</p>
                     <p>${verificationLink}</p>
                     <p>After verifying your email, you can log in to your BusBook driver account.</p>
-                    <p>Welcome to the BusBook Mathew Coach Hire community!</p>
+                    <p>Welcome to the Mathew Coach Hire Bus Booking Hire community!</p>
                     <p>Best regards,<br>Mathew Coach Hire Bus Booking Team</p>
                 </div>
             `
@@ -90,7 +95,7 @@ exports.approveDriver = async (req, res) => {
     }
 };
 
-// Reject driver process also sending a email to the driver
+// if the driver registration is rejected this functionality will be called
 exports.rejectDriver = async (req, res) => {
     try {
         const { driverId } = req.params;
@@ -105,7 +110,7 @@ exports.rejectDriver = async (req, res) => {
             to: driver.email,
             subject: 'Mathew Coach Hire Bus Booking system - Driver Application Update',
             html: `
-                <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+                <div style="font-family: 'Poppins', Arial, sans-serif; max-width: 600px; margin: 0 auto;">
                     <h2 style="color: #dc3545;">Application Update</h2>
                     <p>Hello ${driver.name},</p>
                     <p>Thank you for your interest in becoming a Mathew Coach Hire Bus Booking driver.</p>
@@ -113,7 +118,7 @@ exports.rejectDriver = async (req, res) => {
                     <p>This decision may be due to various factors including documentation requirements or current driver capacity.</p>
                     <p>You're welcome to reapply in the future when circumstances change.</p>
                     <p>Thank you for your understanding.</p>
-                    <p>Best regards,<br>>Mathew Coach Hire Bus Booking Team</p>
+                    <p>Best regards,<br>Mathew Coach Hire Bus Booking Team</p>
                 </div>
             `
         };
@@ -133,7 +138,7 @@ exports.rejectDriver = async (req, res) => {
     }
 };
 
-// when a driver added a bus the bus request need to be approved by the admin
+// if the bus registration is approved by the admin this functionality will be called
 exports.approveBus = async (req, res) => {
     try {
         const { busId } = req.params;
@@ -151,7 +156,7 @@ exports.approveBus = async (req, res) => {
             to: bus.driver.email,
             subject: 'Mathew Coach Hire Bus Booking System - Bus Approved',
             html: `
-                <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+                <div style="font-family: 'Poppins', Arial, sans-serif; max-width: 600px; margin: 0 auto;">
                     <h2 style="color: #28a745;">Bus Approved!</h2>
                     <p>Hello ${bus.driver.name},</p>
                     <p>Your bus (${bus.busNumber}) has been approved and is now available for booking.</p>
@@ -173,7 +178,7 @@ exports.approveBus = async (req, res) => {
     }
 };
 
-// If the bus approval reject by the admin below functionality will happen
+// if the bus registraion is rejected by the admin this function will be called
 exports.rejectBus = async (req, res) => {
     try {
         const { busId } = req.params;
@@ -188,7 +193,7 @@ exports.rejectBus = async (req, res) => {
             to: bus.driver.email,
             subject: 'Mathew Coach Hire Bus Booking System - Bus Rejected',
             html: `
-                <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+                <div style="font-family: 'Poppins', Arial, sans-serif; max-width: 600px; margin: 0 auto;">
                     <h2 style="color: #dc3545;">Bus Rejected</h2>
                     <p>Hello ${bus.driver.name},</p>
                     <p>Your bus (${bus.busNumber}) has not been approved at this time.</p>
@@ -212,7 +217,7 @@ exports.rejectBus = async (req, res) => {
     }
 };
 
-// Admins can add only a end location because are start from dublin
+// When the admin is adding the end locations to the system this functionality working
 exports.addLocation = async (req, res) => {
     try {
         const { name } = req.body;
@@ -229,7 +234,6 @@ exports.addLocation = async (req, res) => {
     }
 };
 
-// admins can see the end location they added in the admin dashboard
 exports.getLocations = async (req, res) => {
     try {
         const locations = await Location.find();
@@ -240,7 +244,6 @@ exports.getLocations = async (req, res) => {
     }
 };
 
-// admins can delete the end locations
 exports.deleteLocation = async (req, res) => {
     try {
         const { locationId } = req.params;
@@ -252,7 +255,7 @@ exports.deleteLocation = async (req, res) => {
     }
 };
 
-// admins can see the analytics of the system
+// oververall system  users and their activities can be seen to the admin by suing this functionality
 exports.getAnalytics = async (req, res) => {
     try {
         const totalPassengers = await User.countDocuments({ role: 'passenger', isVerified: true });

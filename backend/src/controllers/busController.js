@@ -2,7 +2,7 @@ const Bus = require('../models/Bus');
 const Booking = require('../models/Booking');
 const Location = require('../models/Location');
 
-// drivers have the opportubity add the busses to the system
+// when a driver is adding a new bus to the system this function will triggers
 exports.addBus = async (req, res) => {
     try {
         const { busNumber, endLocation, startTime, maxSeats } = req.body;
@@ -34,7 +34,7 @@ exports.addBus = async (req, res) => {
     }
 };
 
-// Update bus (Driver)
+// If the driver wants to update the  bus starting time this function will be triggered
 exports.updateBus = async (req, res) => {
     try {
         const { busId } = req.params;
@@ -54,7 +54,7 @@ exports.updateBus = async (req, res) => {
         bus.startTime = startTime || bus.startTime;
         bus.maxSeats = maxSeats || bus.maxSeats;
         bus.availableSeats = maxSeats ? maxSeats : bus.availableSeats;
-        bus.isApproved = false;
+        bus.isApproved = false; // Reset approval status
 
         await bus.save();
         res.json({ message: 'Bus updated successfully, awaiting admin approval' });
@@ -64,7 +64,7 @@ exports.updateBus = async (req, res) => {
     }
 };
 
-// Delete bus (Driver)
+// if driver wants to delete the bus this function will be triggered
 exports.deleteBus = async (req, res) => {
     try {
         const { busId } = req.params;
@@ -86,7 +86,7 @@ exports.deleteBus = async (req, res) => {
     }
 };
 
-// Get all locations
+// This will display the all the added locations by the admin to the system for the drivers
 exports.getLocations = async (req, res) => {
     try {
         const locations = await Location.find();
@@ -97,7 +97,7 @@ exports.getLocations = async (req, res) => {
     }
 };
 
-// Get driver's buses
+// Get the added the buses by the driver
 exports.getDriverBuses = async (req, res) => {
     try {
         const buses = await Bus.find({ driver: req.user._id });
@@ -108,7 +108,7 @@ exports.getDriverBuses = async (req, res) => {
     }
 };
 
-// Get driver booking history
+// Get the driver's bus booking history
 exports.getDriverBookingHistory = async (req, res) => {
     try {
         const buses = await Bus.find({ driver: req.user._id });
