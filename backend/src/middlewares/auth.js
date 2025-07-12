@@ -2,10 +2,7 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 const { secret } = require('../config/jwt'); 
 
-/**
- * @function authenticateToken
- * @description Middleware to authenticate requests using a JSON Web Token (JWT).
- */
+// when user tries to access a protected route this middleware will check if the user is authenticated
 const authenticateToken = async (req, res, next) => {
     const authHeader = req.headers['authorization'];
     const token = authHeader && authHeader.split(' ')[1];
