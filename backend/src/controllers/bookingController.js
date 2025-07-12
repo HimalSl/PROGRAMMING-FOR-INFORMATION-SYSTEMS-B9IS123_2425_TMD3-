@@ -1,7 +1,7 @@
 const Bus = require('../models/Bus');
 const Booking = require('../models/Booking');
 
-// Search available buses
+// passengers can provide the date,time and end location and search the buses available for that route
 exports.searchBuses = async (req, res) => {
     try {
         const { endLocation, date } = req.query;
@@ -28,7 +28,7 @@ exports.searchBuses = async (req, res) => {
     }
 };
 
-// Book a bus
+// passengers can book a bus by providing number of seats that need to be reserved 
 exports.bookBus = async (req, res) => {
     try {
         const { busId, seats } = req.body;
@@ -63,7 +63,7 @@ exports.bookBus = async (req, res) => {
     }
 };
 
-// View booking history
+// passengers can see there bus booking history
 exports.getBookingHistory = async (req, res) => {
     try {
         const bookings = await Booking.find({ passenger: req.user._id })
@@ -75,7 +75,7 @@ exports.getBookingHistory = async (req, res) => {
     }
 };
 
-// Cancel booking
+// passengers can cancel their bus booking
 exports.cancelBooking = async (req, res) => {
     try {
         const { bookingId } = req.params;

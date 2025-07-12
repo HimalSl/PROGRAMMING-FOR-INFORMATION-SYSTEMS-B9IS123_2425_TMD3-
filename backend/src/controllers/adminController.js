@@ -5,7 +5,7 @@ const Location = require('../models/Location');
 const transporter = require('../config/email');
 const crypto = require('crypto');
 
-// Admin dashboard
+// admin dashboard loading
 exports.getDashboard = async (req, res) => {
     try {
         const passengerCount = await User.countDocuments({ role: 'passenger', isVerified: true });
@@ -31,7 +31,7 @@ exports.getDashboard = async (req, res) => {
     }
 };
 
-// Approve driver
+// After the admin approves a driver, system send an email to the driver
 exports.approveDriver = async (req, res) => {
     try {
         const { driverId } = req.params;
@@ -54,7 +54,7 @@ exports.approveDriver = async (req, res) => {
         const mailOptions = {
             from: process.env.EMAIL_USER,
             to: driver.email,
-            subject: 'Mathew Coach Hire Bus Booking System - Driver Application Approved',
+            subject: '>Mathew Coach Hire Bus Booking System - Driver Application Approved',
             html: `
                 <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
                     <h2 style="color: #28a745;">Congratulations!</h2>
@@ -72,7 +72,7 @@ exports.approveDriver = async (req, res) => {
                     <p>${verificationLink}</p>
                     <p>After verifying your email, you can log in to your BusBook driver account.</p>
                     <p>Welcome to the BusBook Mathew Coach Hire community!</p>
-                    <p>Best regards,<br>The BusBook Team</p>
+                    <p>Best regards,<br>Mathew Coach Hire Bus Booking Team</p>
                 </div>
             `
         };
@@ -90,7 +90,7 @@ exports.approveDriver = async (req, res) => {
     }
 };
 
-// Reject driver
+// Reject driver process also sending a email to the driver
 exports.rejectDriver = async (req, res) => {
     try {
         const { driverId } = req.params;
@@ -113,7 +113,7 @@ exports.rejectDriver = async (req, res) => {
                     <p>This decision may be due to various factors including documentation requirements or current driver capacity.</p>
                     <p>You're welcome to reapply in the future when circumstances change.</p>
                     <p>Thank you for your understanding.</p>
-                    <p>Best regards,<br>Mathew Coach Hire Team</p>
+                    <p>Best regards,<br>>Mathew Coach Hire Bus Booking Team</p>
                 </div>
             `
         };
@@ -133,7 +133,7 @@ exports.rejectDriver = async (req, res) => {
     }
 };
 
-// Approve bus
+// when a driver added a bus the bus request need to be approved by the admin
 exports.approveBus = async (req, res) => {
     try {
         const { busId } = req.params;
@@ -155,7 +155,7 @@ exports.approveBus = async (req, res) => {
                     <h2 style="color: #28a745;">Bus Approved!</h2>
                     <p>Hello ${bus.driver.name},</p>
                     <p>Your bus (${bus.busNumber}) has been approved and is now available for booking.</p>
-                    <p>Best regards,<br>The BusBook Team</p>
+                    <p>Best regards,<br>Mathew Coach Hire Bus Booking Team</p>
                 </div>
             `
         };
@@ -173,7 +173,7 @@ exports.approveBus = async (req, res) => {
     }
 };
 
-// Reject bus
+// If the bus approval reject by the admin below functionality will happen
 exports.rejectBus = async (req, res) => {
     try {
         const { busId } = req.params;
@@ -193,7 +193,7 @@ exports.rejectBus = async (req, res) => {
                     <p>Hello ${bus.driver.name},</p>
                     <p>Your bus (${bus.busNumber}) has not been approved at this time.</p>
                     <p>Please review the requirements and resubmit if necessary.</p>
-                    <p>Best regards,<br>The BusBook Team</p>
+                    <p>Best regards,<br>Mathew Coach Hire Bus Booking Team</p>
                 </div>
             `
         };
@@ -212,7 +212,7 @@ exports.rejectBus = async (req, res) => {
     }
 };
 
-// Manage end locations
+// Admins can add only a end location because are start from dublin
 exports.addLocation = async (req, res) => {
     try {
         const { name } = req.body;
@@ -229,6 +229,7 @@ exports.addLocation = async (req, res) => {
     }
 };
 
+// admins can see the end location they added in the admin dashboard
 exports.getLocations = async (req, res) => {
     try {
         const locations = await Location.find();
@@ -239,6 +240,7 @@ exports.getLocations = async (req, res) => {
     }
 };
 
+// admins can delete the end locations
 exports.deleteLocation = async (req, res) => {
     try {
         const { locationId } = req.params;
@@ -250,7 +252,7 @@ exports.deleteLocation = async (req, res) => {
     }
 };
 
-// System analytics
+// admins can see the analytics of the system
 exports.getAnalytics = async (req, res) => {
     try {
         const totalPassengers = await User.countDocuments({ role: 'passenger', isVerified: true });

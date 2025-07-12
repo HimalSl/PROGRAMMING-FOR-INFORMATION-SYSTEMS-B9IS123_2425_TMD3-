@@ -55,7 +55,7 @@ exports.register = async (req, res) => {
             const mailOptions = {
                 from: process.env.EMAIL_USER,
                 to: email,
-                subject: 'Mathew Coach Hire Bus Booking - Verify Your Email',
+                subject: 'Mathew Coach Hire Bus Booking System - Verify Your Email',
                 html: `
                     <div style="font-family: "Poppins", sans-serif; max-width: 600px; margin: 0 auto;">
                         <h2 style="color: #06528b;">Welcome to Mathew Coach Hire Bus Booking system!</h2>
@@ -70,7 +70,7 @@ exports.register = async (req, res) => {
                         </div>
                         <p>If the button doesn't work, copy and paste this link into your browser:</p>
                         <p>${verificationLink}</p>
-                        <p>Best regards,<br>The Mathew Coach Hire Bus Booking System Team</p>
+                        <p>Best regards,<br>Mathew Coach Hire Bus Booking Team</p>
                     </div>
                 `
             };
@@ -95,7 +95,7 @@ exports.register = async (req, res) => {
     }
 };
 
-// Email verification
+// Email verification is send to the passengers gmail
 exports.verifyEmail = async (req, res) => {
     try {
         const { token } = req.query;
@@ -122,12 +122,12 @@ exports.verifyEmail = async (req, res) => {
 };
 
 
-// Login
+// Login functionality
 exports.login = async (req, res) => {
     try {
         const { email, password } = req.body;
 
-        // Find user
+        // Find user's token 
         const user = await User.findOne({ email });
         if (!user) {
             return res.status(401).json({ message: 'Authentication failed. Invalid email or password.' });

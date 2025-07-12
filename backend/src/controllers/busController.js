@@ -2,7 +2,7 @@ const Bus = require('../models/Bus');
 const Booking = require('../models/Booking');
 const Location = require('../models/Location');
 
-// Add new bus (Driver)
+// drivers have the opportubity add the busses to the system
 exports.addBus = async (req, res) => {
     try {
         const { busNumber, endLocation, startTime, maxSeats } = req.body;
@@ -54,7 +54,7 @@ exports.updateBus = async (req, res) => {
         bus.startTime = startTime || bus.startTime;
         bus.maxSeats = maxSeats || bus.maxSeats;
         bus.availableSeats = maxSeats ? maxSeats : bus.availableSeats;
-        bus.isApproved = false; // Reset approval status
+        bus.isApproved = false;
 
         await bus.save();
         res.json({ message: 'Bus updated successfully, awaiting admin approval' });
