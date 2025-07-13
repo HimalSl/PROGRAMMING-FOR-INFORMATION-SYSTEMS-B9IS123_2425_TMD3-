@@ -65,6 +65,15 @@ The project uses **Vanilla JavaScript** on the frontend and **Node.js + Express*
 - **View Analytics**: See system-wide stats (users, buses, bookings).
 
 ---
+### CRUD Operations
+| **Entity**        | **Create**                     | **Read**                       | **Update**                     | **Delete**                     |
+|-------------------|--------------------------------|--------------------------------|--------------------------------|--------------------------------|
+| **User**          | Register (`POST /auth/register`) | View dashboard (`GET /auth/me`) | -                              | -                              |
+| **Bus**           | Add bus (`POST /bus/add`)      | Search buses (`GET /booking/search`), Driver buses (`GET /bus/driver-buses`) | Update time (`POST /busModification/request`) | Remove bus (`POST /busModification/request`) |
+| **Booking**       | Book seats (`POST /booking/book`) | Booking history (`GET /booking/history`), Driver bookings (`GET /bus/driver-bookings`) | -                              | Cancel booking (`POST /booking/cancel/:id`) |
+| **Location**      | Add location (`POST /admin/locations/add`) | List locations (`GET /admin/locations`) | -                              | Delete location (`DELETE /admin/locations/:id`) |
+| **BusModification** | Request modification (`POST /busModification/request`) | View pending requests (`GET /busModification`) | Approve/reject (`POST /busModification/approve/:id`, `/reject/:id`) | -                              |
+
 
 ## Project Structure
 
