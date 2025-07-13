@@ -24,6 +24,7 @@ The project uses **Vanilla JavaScript** on the frontend and **Node.js + Express*
 | Authentication  | JWT-based, role-based access  |
 | Email           | Nodemailer (Gmail SMTP)       |
 | Styling         | Google Fonts(Poppins), Font Awesome(Icons)    |
+| API Testing     | Thunder Client VS code extension   |
 
 ###  Why mongoDB?
     - Uses REST API with frontend-backend separation
