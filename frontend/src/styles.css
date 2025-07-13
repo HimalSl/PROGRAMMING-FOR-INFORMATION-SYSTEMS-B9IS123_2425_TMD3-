@@ -6,13 +6,18 @@
 
 body {
     font-family: "Poppins", sans-serif;
-    background: url('/frontend/src/assets/Bg_2.jpg') no-repeat center center/cover;
+    background-image: url('/frontend/src/assets/Bg_2.jpg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed; /* Keeps background static */
     min-height: 100vh;
+    margin: 0;
+    padding: 0;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-
 
 /* Login forms and Sign Up Forms stylings*/
 
