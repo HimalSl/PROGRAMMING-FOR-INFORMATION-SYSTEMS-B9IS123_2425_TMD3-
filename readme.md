@@ -1,8 +1,8 @@
-#  Matthews Coach Hire – Bus Booking System
+#  Mathews Coach Hire – Bus Booking System
 
 ##  Project Overview
 
-This is a simple full-stack web application built for a company called **Matthews Coach Hire**. It allows different users to interact with the system based on their role:
+This is a simple full-stack web application built for a company called **Mathews Coach Hire**. It allows different users to interact with the system based on their role:
 
 - **Passengers** can register, log in, search available buses, and book tickets.
 - **Bus Owners** can register, log in, add buses, and view bookings.
@@ -14,13 +14,16 @@ The project uses **Vanilla JavaScript** on the frontend and **Node.js + Express*
 
 ##  Technology Stack
 
-| Layer       | Technology Used            |
-|-------------|-----------------------------|
-| Frontend    | HTML + CSS + Vanilla JavaScript  |
-| Backend     | Node.js + Express.js        |
-| Database    | MongoDB(NO-SQL database) |
-| Communication | JSON-based REST API        |
-| Authentication | Role-based access  |
+
+| **Layer**       | **Technology Used**            |
+|-----------------|-------------------------------|
+| Frontend        | HTML, CSS, Vanilla JavaScript |
+| Backend         | Node.js, Express.js           |
+| Database        | MongoDB (NoSQL)               |
+| Communication   | JSON-based REST API           |
+| Authentication  | JWT-based, role-based access  |
+| Email           | Nodemailer (Gmail SMTP)       |
+| Styling         | Google Fonts(Poppins), Font Awesome(Icons)    |
 
 ###  Why mongoDB?
     - Uses REST API with frontend-backend separation
@@ -40,40 +43,95 @@ The project uses **Vanilla JavaScript** on the frontend and **Node.js + Express*
 
 ---
 
-##  Key Features
+## Key Features
 
-###  Passenger
-- Register account
-- Login/logout
-- Search available buses
-- Book tickets
-- View booking history
-- Cancel bookings
+### Passenger
+- **Register/Login/Logout**: Create an account, log in, and log out securely.
+- **Search Buses**: Filter buses by end location and date.
+- **Book Tickets**: Select a bus and book seats (to certain limit).
+- **View Booking History**: See past and active bookings.
+- **Cancel Bookings**: Cancel active bookings with confirmation.
 
-###  Bus Owner
-- Register as owner
-- Login/logout
-- Add/update/delete buses
-- View booking history for their buses
+### Bus Owner (Driver)
+- **Register/Login/Logout**: Create an account as a driver.
+- **Manage Buses**: Add, update start time, or remove buses (pending admin approval).
+- **View Bookings**: See booking history for their buses.
+- **Request Modifications**: Submit requests to update bus time or remove a bus.
 
-
-###  Admin
-- Manage all users
-- Approve/reject new buses
-- Manage locations/routes
-- View system analytics
+### Admin
+- **Manage Users**: Approve/reject driver registrations.
+- **Manage Buses**: Approve/reject new buses or modification requests.
+- **Manage Locations**: Add or delete destinations.
+- **View Analytics**: See system-wide stats (users, buses, bookings).
 
 ---
 
 ## Project Structure
+
 ```
-├── PROGRAMMING-FOR-INFORMATION-SYSTEMS-B9IS123_2425_TMD3-
-│   ├── frontend/
-│   ├── backend/
-        ├── .gitignore
-        ├── .package-lock.json
-        ├── .package.json
-│   ├── docs/
-│   ├── README.md
-│   
+PROGRAMMING-FOR-INFORMATION-SYSTEMS-B9IS123_2425_TMD3-/
+├── backend/src
+│   ├── config/
+│   │   ├── email.js               
+│   │   ├── db.js                 
+│   │   ├── jwt.js
+│   ├── controllers/
+│   │   ├── authController.js      
+│   │   ├── busController.js       
+│   │   ├── bookingController.js   
+│   │   ├── adminController.js     
+│   │   ├── busModificationController.js 
+│   │   ├── userController.js
+│   ├── middlewares/
+│   │   ├── admin.js                
+│   │   ├── auth.js               
+│   ├── models/
+│   │   ├── User.js                
+│   │   ├── Bus.js                 
+│   │   ├── Booking.js             
+│   │   ├── Location.js            
+│   │   ├── BusModification.js     
+│   ├── routes/
+│   │   ├── auth.js                
+│   │   ├── bus.js                 
+│   │   ├── booking.js             
+│   │   ├── admin.js               
+│   │   ├── busModification.js     
+│   │   ├── user.js
+│   ├── server.js                  
+│   ├── tests/                     
+│   ├── package.json               
+│   ├── .env                       
+├── frontend/src
+│   ├── assets
+│   ├── index.html                 
+│   ├── styles.css                
+│   ├── script.js                  
+├── README.md                     
 ```
+
+---
+## Setup Instructions
+
+1. **Clone the Repository**:
+   ```bash
+   git clone <https://github.com/HimalSl/PROGRAMMING-FOR-INFORMATION-SYSTEMS-B9IS123_2425_TMD3-.gitl>
+   cd PROGRAMMING-FOR-INFORMATION-SYSTEMS-B9IS123_2425_TMD3
+   ```
+
+2. **Install Dependencies**:
+   ```bash
+   cd backend
+   npm install
+   ```
+3. **Start the Backend**:
+   ```bash
+   npm run dev
+   ```
+   The server runs on `http://localhost:5000`.
+
+4. **Serve the Frontend**:
+   ```bash
+   cd frontend
+   npx live-server
+   ```
