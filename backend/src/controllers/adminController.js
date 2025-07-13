@@ -59,7 +59,7 @@ exports.approveDriver = async (req, res) => {
         const mailOptions = {
             from: process.env.EMAIL_USER,
             to: driver.email,
-            subject: 'Mathew Coach Hire Bus Booking System - Driver Application Approved',
+            subject: 'Matthews Coach Hire Bus Booking System - Driver Application Approved',
             html: `
                 <div style="font-family: 'Poppins', Arial, sans-serif; max-width: 600px; margin: 0 auto;">
                     <h2 style="color: #28a745;">Congratulations!</h2>
@@ -76,8 +76,8 @@ exports.approveDriver = async (req, res) => {
                     <p>If the button doesn't work, copy and paste this link into your browser:</p>
                     <p>${verificationLink}</p>
                     <p>After verifying your email, you can log in to your BusBook driver account.</p>
-                    <p>Welcome to the Mathew Coach Hire Bus Booking Hire community!</p>
-                    <p>Best regards,<br>Mathew Coach Hire Bus Booking Team</p>
+                    <p>Welcome to the Matthews Coach Hire Bus Booking Hire community!</p>
+                    <p>Best regards,<br>Matthews Coach Hire Bus Booking Team</p>
                 </div>
             `
         };
@@ -108,17 +108,17 @@ exports.rejectDriver = async (req, res) => {
         const mailOptions = {
             from: process.env.EMAIL_USER,
             to: driver.email,
-            subject: 'Mathew Coach Hire Bus Booking system - Driver Application Update',
+            subject: 'Matthews Coach Hire Bus Booking system - Driver Application Update',
             html: `
                 <div style="font-family: 'Poppins', Arial, sans-serif; max-width: 600px; margin: 0 auto;">
                     <h2 style="color: #dc3545;">Application Update</h2>
                     <p>Hello ${driver.name},</p>
-                    <p>Thank you for your interest in becoming a Mathew Coach Hire Bus Booking driver.</p>
+                    <p>Thank you for your interest in becoming a Matthew Coach Hire Bus Booking driver.</p>
                     <p>After careful review, we regret to inform you that your driver application has not been approved at this time.</p>
                     <p>This decision may be due to various factors including documentation requirements or current driver capacity.</p>
                     <p>You're welcome to reapply in the future when circumstances change.</p>
                     <p>Thank you for your understanding.</p>
-                    <p>Best regards,<br>Mathew Coach Hire Bus Booking Team</p>
+                    <p>Best regards,<br>Matthews Coach Hire Bus Booking Team</p>
                 </div>
             `
         };
@@ -154,13 +154,13 @@ exports.approveBus = async (req, res) => {
         const mailOptions = {
             from: process.env.EMAIL_USER,
             to: bus.driver.email,
-            subject: 'Mathew Coach Hire Bus Booking System - Bus Approved',
+            subject: 'Matthews Coach Hire Bus Booking System - Bus Approved',
             html: `
                 <div style="font-family: 'Poppins', Arial, sans-serif; max-width: 600px; margin: 0 auto;">
                     <h2 style="color: #28a745;">Bus Approved!</h2>
                     <p>Hello ${bus.driver.name},</p>
                     <p>Your bus (${bus.busNumber}) has been approved and is now available for booking.</p>
-                    <p>Best regards,<br>Mathew Coach Hire Bus Booking Team</p>
+                    <p>Best regards,<br>Matthews Coach Hire Bus Booking Team</p>
                 </div>
             `
         };
@@ -191,14 +191,14 @@ exports.rejectBus = async (req, res) => {
         const mailOptions = {
             from: process.env.EMAIL_USER,
             to: bus.driver.email,
-            subject: 'Mathew Coach Hire Bus Booking System - Bus Rejected',
+            subject: 'Matthews Coach Hire Bus Booking System - Bus Rejected',
             html: `
                 <div style="font-family: 'Poppins', Arial, sans-serif; max-width: 600px; margin: 0 auto;">
                     <h2 style="color: #dc3545;">Bus Rejected</h2>
                     <p>Hello ${bus.driver.name},</p>
                     <p>Your bus (${bus.busNumber}) has not been approved at this time.</p>
                     <p>Please review the requirements and resubmit if necessary.</p>
-                    <p>Best regards,<br>Mathew Coach Hire Bus Booking Team</p>
+                    <p>Best regards,<br>Matthews Coach Hire Bus Booking Team</p>
                 </div>
             `
         };

@@ -54,12 +54,12 @@ exports.register = async (req, res) => {
             const mailOptions = {
                 from: process.env.EMAIL_USER,
                 to: email,
-                subject: 'Mathew Coach Hire Bus Booking System - Verify Your Email',
+                subject: 'Matthews Coach Hire Bus Booking System - Verify Your Email',
                 html: `
                     <div style="font-family: 'Poppins', Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-                        <h2 style="color: #06528b;">Welcome to Mathew Coach Hire Bus Booking system!</h2>
+                        <h2 style="color: #06528b;">Welcome to Matthews Coach Hire Bus Booking system!</h2>
                         <p>Hello ${name},</p>
-                        <p>Thank you for registering with Mathew Coach Hire Bus Booking system. Please click the button below to verify your email address otherwise you cannot access the system:</p>
+                        <p>Thank you for registering with Matthews Coach Hire Bus Booking system. Please click the button below to verify your email address otherwise you cannot access the system:</p>
                         <div style="text-align: center; margin: 30px 0;">
                             <a href="${verificationLink}" 
                                style="background-color: #06528b; color: white; padding: 12px 30px; 
@@ -69,7 +69,7 @@ exports.register = async (req, res) => {
                         </div>
                         <p>If the button doesn't work, copy and paste this link into your browser:</p>
                         <p>${verificationLink}</p>
-                        <p>Best regards,<br>Mathew Coach Hire Bus Booking Team</p>
+                        <p>Best regards,<br>Matthews Coach Hire Bus Booking Team</p>
                     </div>
                 `
             };

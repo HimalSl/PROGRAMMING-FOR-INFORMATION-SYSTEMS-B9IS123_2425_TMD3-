@@ -1,8 +1,8 @@
-#  Mathews Coach Hire – Bus Booking System
+#  Matthews Coach Hire – Bus Booking System
 
 ##  Project Overview
 
-This is a simple full-stack web application built for a company called **Mathews Coach Hire**. It allows different users to interact with the system based on their role:
+This is a simple full-stack web application built for a company called **Matthews Coach Hire**. It allows different users to interact with the system based on their role:
 
 - **Passengers** can register, log in, search available buses, and book tickets.
 - **Bus Owners** can register, log in, add buses, and view bookings.

@@ -36,14 +36,14 @@ exports.requestBusModification = async (req, res) => {
         const mailOptions = {
             from: process.env.EMAIL_USER,
             to: req.user.email,
-            subject: 'Mathew Coach Hire Bus Booking System - Bus Modification Request Submitted',
+            subject: 'Matthews Coach Hire Bus Booking System - Bus Modification Request Submitted',
             html: `
                 <div style="font-family: 'Poppins', Arial, sans-serif; max-width: 600px; margin: 0 auto;">
                     <h2 style="color: #06528b;">Modification Request Submitted</h2>
                     <p>Hello ${req.user.name},</p>
                     <p>Your request to ${type === 'update' ? 'update the start time of' : 'remove'} bus ${bus.busNumber} has been submitted.</p>
                     <p>You will be notified once the admin reviews your request.</p>
-                    <p>Best regards,<br>Mathew Coach Hire Bus Booking Team</p>
+                    <p>Best regards,<br>Matthews Coach Hire Bus Booking Team</p>
                 </div>
             `
         };
@@ -109,7 +109,7 @@ exports.approveBusModification = async (req, res) => {
                 const mailOptions = {
                     from: process.env.EMAIL_USER,
                     to: booking.passenger.email,
-                    subject: 'Mathew Coach Hire Bus Booking System - Bus Start Time Updated',
+                    subject: 'Matthews Coach Hire Bus Booking System - Bus Start Time Updated',
                     html: `
                         <div style="font-family: 'Poppins', Arial, sans-serif; max-width: 600px; margin: 0 auto;">
                             <h2 style="color: #06528b;">Bus Schedule Update</h2>
@@ -117,7 +117,7 @@ exports.approveBusModification = async (req, res) => {
                             <p>The start time for your booked bus ${bus.busNumber} from Dublin to ${bus.endLocation} has been updated.</p>
                             <p><strong>New Start Time:</strong> ${new Date(modification.newStartTime).toLocaleString()}</p>
                             <p>Please plan your journey accordingly.</p>
-                            <p>Best regards,<br>Mathew Coach Hire Bus Booking Team</p>
+                            <p>Best regards,<br>Matthews Coach Hire Bus Booking Team</p>
                         </div>
                     `
                 };
@@ -140,14 +140,14 @@ exports.approveBusModification = async (req, res) => {
                 const mailOptions = {
                     from: process.env.EMAIL_USER,
                     to: booking.passenger.email,
-                    subject: 'Mathew Coach Hire Bus Booking System - Bus Cancellation Notice',
+                    subject: 'Matthews Coach Hire Bus Booking System - Bus Cancellation Notice',
                     html: `
                         <div style="font-family: 'Poppins', Arial, sans-serif; max-width: 600px; margin: 0 auto;">
                             <h2 style="color: #dc3545;">Bus Cancellation</h2>
                             <p>Hello ${booking.passenger.name},</p>
                             <p>We regret to inform you that bus ${bus.busNumber} from Dublin to ${bus.endLocation}, scheduled for ${new Date(bus.startTime).toLocaleString()}, has been cancelled.</p>
                             <p>We apologize for any inconvenience this may cause. Please contact our support team for assistance or to rebook on another bus.</p>
-                            <p>Best regards,<br>Mathew Coach Hire Bus Booking Team</p>
+                            <p>Best regards,<br>Matthews Coach Hire Bus Booking Team</p>
                         </div>
                     `
                 };
@@ -170,7 +170,7 @@ exports.approveBusModification = async (req, res) => {
         const driverMailOptions = {
             from: process.env.EMAIL_USER,
             to: modification.driverId.email,
-            subject: 'Mathew Coach Hire Bus Booking System - Bus Modification Approved',
+            subject: 'Matthews Coach Hire Bus Booking System - Bus Modification Approved',
             html: `
                 <div style="font-family: 'Poppins', Arial, sans-serif; max-width: 600px; margin: 0 auto;">
                     <h2 style="color: #28a745;">Modification Approved</h2>
@@ -179,7 +179,7 @@ exports.approveBusModification = async (req, res) => {
                     ${modification.type === 'update' ? `
                         <p><strong>New Start Time:</strong> ${new Date(modification.newStartTime).toLocaleString()}</p>
                     ` : ''}
-                    <p>Best regards,<br>Mathew Coach Hire Bus Booking Team</p>
+                    <p>Best regards,<br>Matthews Coach Hire Bus Booking Team</p>
                 </div>
             `
         };
@@ -216,14 +216,14 @@ exports.rejectBusModification = async (req, res) => {
         const mailOptions = {
             from: process.env.EMAIL_USER,
             to: modification.driverId.email,
-            subject: 'Mathew Coach Hire Bus Booking System - Bus Modification Rejected',
+            subject: 'Matthews Coach Hire Bus Booking System - Bus Modification Rejected',
             html: `
                 <div style="font-family: 'Poppins', Arial, sans-serif; max-width: 600px; margin: 0 auto;">
                     <h2 style="color: #dc3545;">Modification Rejected</h2>
                     <p>Hello ${modification.driverId.name},</p>
                     <p>Your request to ${modification.type === 'update' ? 'update the start time of' : 'remove'} bus ${modification.busId.busNumber} has been rejected.</p>
                     <p>Please contact support for more details.</p>
-                    <p>Best regards,<br>Mathew Coach Hire Bus Booking Team</p>
+                    <p>Best regards,<br>Matthews Coach Hire Bus Booking Team</p>
                 </div>
             `
         };
